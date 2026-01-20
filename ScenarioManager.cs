@@ -208,9 +208,9 @@ namespace MiSlE
                 AccessTools.Method(typeof(World), nameof(World.Awake)),
                 postfix: new HarmonyMethod(typeof(ScenarioManager), nameof(WorldAwakePostfix)));
 #else
-            //harmony.Patch(
-            //    AccessTools.Method(typeof(PlayerManager), "Start"),
-            //    postfix: new HarmonyMethod(typeof(ScenarioManager), nameof(PlayerManagerStartPostfix)));
+            harmony.Patch(
+               AccessTools.Method(typeof(PlayerManager), "Start"),
+               postfix: new HarmonyMethod(typeof(ScenarioManager), nameof(PlayerManagerStartPostfix)));
 #endif
         }
 
