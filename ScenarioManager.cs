@@ -163,8 +163,6 @@ namespace MiSlE
                         locationButtonRT.anchoredPosition = new Vector2(0, -(i * ITEM_SPACING + 2.5f));
 #if MISIDE
                         locationButtonRT.sizeDelta = locationButtonRT.sizeDelta - new Vector2(60, 0);
-#else
-
 #endif
 
 #if MISIDE
@@ -220,20 +218,10 @@ namespace MiSlE
         private static void PlayerManagerStartPostfix(PlayerManager __instance)
 #endif
         {
-#if MISIDE
-            foreach (UnityEngine.Object matObj in Resources.FindObjectsOfTypeAll(Il2CppType.Of<Material>()))
-#else
-            foreach (Material matObj in Resources.FindObjectsOfTypeAll<Material>())
-#endif
+            foreach (Material mat in Resources.FindObjectsOfTypeAll<Material>())
             {
-                if (matObj == null)
+                if (mat == null)
                     continue;
-
-#if MISIDE
-                Material mat = matObj.Cast<Material>();
-#else
-                Material mat = matObj;
-#endif
 
                 if (!mat.shader)
                     continue;
@@ -263,19 +251,11 @@ namespace MiSlE
 
                 cachedShaders = new();
                 List<Shader> toStoreShaders = new List<Shader>();
-#if MISIDE
-                foreach (UnityEngine.Object shaderObj in Resources.FindObjectsOfTypeAll(Il2CppType.Of<Shader>()))
-#else
-                foreach (Shader shaderObj in Resources.FindObjectsOfTypeAll<Shader>())
-#endif
+                foreach (Shader shader in Resources.FindObjectsOfTypeAll<Shader>())
                 {
-                    if (shaderObj == null)
+                    if (shader == null)
                         continue;
-#if MISIDE
-                    Shader shader = shaderObj.Cast<Shader>();
-#else
-                    Shader shader = shaderObj;
-#endif
+
                     string shaderNameLower = shader.name.ToLower();
                     if ((shaderNameLower.StartsWith("aihasto") || shaderNameLower.StartsWith("voidway") || shaderNameLower.StartsWith("realtoon")) && !cachedShaders.ContainsKey(shaderNameLower))
                     {
